@@ -1,0 +1,48 @@
+﻿@model DFEJobs.Models.Job
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<div class="jumbotron">
+    <h2>@ViewBag.Message</h2>
+    <br />
+    <div>
+        @using (Html.BeginForm("Add", "Jobs"))
+        {
+            <div class="form-group">
+                @Html.LabelFor(j => j.Title)
+                @Html.TextBoxFor(j => j.Title, new { @class = "form-control widetext" })
+                @Html.ValidationMessageFor(j => j.Title)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(j => j.School)
+                @Html.TextBoxFor(j => j.School, new { @class = "form-control widetext" })
+                @Html.ValidationMessageFor(j => j.School)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(j => j.Salary)
+                @Html.TextBoxFor(j => j.Salary, new { @class = "form-control widetext" })
+                @Html.ValidationMessageFor(j => j.Salary)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(j => j.Description)
+                @Html.TextAreaFor(j => j.Description, new { rows = "5", @class = "form-control widetext" })
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="padding-left: 30px; padding-right: 30px">
+            Save
+            </button>
+        }
+        <br />
+        <br />
+    </div>
+</div>
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

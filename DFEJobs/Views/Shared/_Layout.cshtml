@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Department for Education</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div style="background-color: #fff;">
+        <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: black">
+            <div class="container containerNew">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("GOV.UK", "Index", "Home", new { area = "" }, new { @class = "navbar-brand", style = "font-weight: bolder; color: white", id = "navbar-brand-new" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("View", "Index", "Jobs")</li>
+                        @{
+                            if (User.IsInRole("CanCreateJobs"))
+                            {
+                                <li>@Html.ActionLink("Create", "Create", "Jobs")</li>
+                            }
+                        }
+                    </ul>
+
+                    <div style="float: right; position: relative; margin-top: 10px;">
+                        <form onsubmit="return search();">
+                            <input type="text" name="navsearch" id="navsearch" placeholder="  Search" style="padding-left: 5px" />
+                            <input type="submit" value="Search" />
+                        </form>
+                    </div>
+                    @{
+                        if (User.IsInRole("CanCreateJobs"))
+                        {
+                                        <div style="color: white; float: right; line-height: 20px; padding-top: 15px; position: relative;">Welcome, Admin!&nbsp;&nbsp;&nbsp;</div>
+                        }
+                    }
+                </div>
+
+            </div>
+        </div>
+        <div id="global-header-bar" style="background-color: #005ea5; max-width: 1170px; margin: 0 auto; height: 10px;"></div>
+        <div class="container body-content">
+            <br />
+            @RenderBody()
+            <br />
+        </div>
+        <footer class="footer">
+            <br />
+            <div style="margin-left: 20%;">
+                &copy; Department for Education<br />
+                @{
+                    if (User.IsInRole("CanCreateJobs"))
+                    {
+                        @Html.ActionLink("Log out", "LogOff", "Account", null, new { style = "color: black;" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Admin Login", "Login", "Account", null, new { style = "color: black;" })
+                    }
+                }
+
+            </div>
+            <br />
+        </footer>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+
+        <script type="text/javascript">
+
+            function search() {
+                var input = document.getElementById('navsearch').value;
+                var url1 = "https://www.gov.uk/search/all?keywords=";
+                var url2 = "&order=relevance";
+                window.location.href = url1 + input + url2;
+                return false;
+            }
+        </script>
+    </div>
+</body>
+</html>

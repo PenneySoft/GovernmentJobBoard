@@ -1,0 +1,49 @@
+﻿@model DFEJobs.Models.Job
+@using System.Globalization;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{ 
+    string appPlural = "application";
+
+    if (Model.Applications.Count() != 1)
+    {
+        appPlural += "s";
+    }
+}
+<br />
+<div class="jumbotron">
+    @Html.ActionLink("Back", "Index", "Jobs", null, new { @class = "btn btn-info" })
+    <h2>@Model.Title</h2>
+    <p>@Model.School</p>
+    <div style="font-weight: 400; color: #444">@wholePounds(Model.Salary) p/a<br />
+    <br />
+    @Model.Description</div>
+    
+    <br />
+    <h4>Showing @Model.Applications.Count() @appPlural:</h4>
+    <ul style="list-style: none">
+        @foreach (var app in Model.Applications)
+        {
+
+            <li><hr /><b>Name:</b> @app.Name</li>
+            <li><b>Email:</b> @app.Email</li>
+            <li><b>Cover letter:</b> </li>
+            <p>@app.CoverLetter</p>
+        }
+    </ul>
+</div>
+
+@{
+    // Function that takes salary as integer (20000) and returns string as whole pounds (£20,000)
+    string wholePounds(int input) // 20000
+    {
+        string inputString = input.ToString("C", new CultureInfo("en-GB")); // "£20,000.00"
+        string[] split = inputString.Split('.'); // { "£20,000", "00" }
+        string poundsOnly = split[0]; // "£20,000"
+
+        return poundsOnly;
+    }
+}
+

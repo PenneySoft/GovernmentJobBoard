@@ -1,0 +1,42 @@
+﻿@model DFEJobs.ViewModels.JobApplicationViewModel
+@{
+    ViewBag.Title = "Apply";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="jumbotron">
+        <h2>Apply for:</h2>
+        <p>
+            @Model.Job.Title
+        </p>
+        <br />
+        <div>
+            @using (Html.BeginForm("ApplyAdd", "Jobs"))
+            {
+                <div class="form-group">
+                    @Html.LabelFor(a => a.Application.Name)
+                    @Html.TextBoxFor(a => a.Application.Name, new { @class = "form-control widetext" })
+                    @Html.ValidationMessageFor(a => a.Application.Name)
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(a => a.Application.Email)
+                    @Html.TextBoxFor(a => a.Application.Email, new { @class = "form-control widetext" })
+                    @Html.ValidationMessageFor(a => a.Application.Email)
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(a => a.Application.CoverLetter)
+                    @Html.TextAreaFor(a => a.Application.CoverLetter, new { rows = "8", @class = "form-control widetext" })
+                </div>
+
+                @Html.HiddenFor(a => a.Application.JobId)
+
+                <button type="submit" class="btn btn-primary" style="padding-left: 30px; padding-right: 30px">
+                    Apply
+                </button>
+            }
+            <br />
+            <br />
+        </div>
+    </div>

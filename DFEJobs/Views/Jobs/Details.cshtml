@@ -1,0 +1,33 @@
+﻿@model DFEJobs.Models.Job
+@using System.Globalization;
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<div class="jumbotron">
+    @Html.ActionLink("Back", "Index", "Jobs", null, new { @class = "btn btn-info" })
+    <div style="width: 50%">
+        <h2>@Model.Title</h2>
+        <div style="font-weight: 400; color: #444">
+            <p>@Model.School </p>
+            @wholePounds(Model.Salary) p/a <br />
+            <br />
+            @Model.Description
+        </div>
+    </div>
+    <br />
+    @Html.ActionLink("Apply", "Apply", new { Controller = "Jobs", Id = Model.Id }, new { @class = "btn btn-primary" })
+</div>
+
+@{
+    // Function that takes salary as integer (20000) and returns string as whole pounds (£20,000)
+    string wholePounds(int input) // 20000
+    {
+        string inputString = input.ToString("C", new CultureInfo("en-GB")); // "£20,000.00"
+        string[] split = inputString.Split('.'); // { "£20,000", "00" }
+        string poundsOnly = split[0]; // "£20,000"
+
+        return poundsOnly;
+    }
+}

@@ -1,0 +1,58 @@
+﻿@model IEnumerable<DFEJobs.Models.Job>
+@using System.Globalization;
+@{
+    ViewBag.Title = "Jobs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<div class="jumbotron">
+    <p>
+        <div style="width: 80%">
+            <h2>@ViewBag.Message</h2>
+            <br />
+
+            <table class="table table-bordered table-hover">
+                <thead style="font-weight: 600"><tr>
+                    <td style="width: 30%">Job Title</td><td>School</td><td style="width: 15%">Salary</td>
+                      </tr></thead>
+                <tbody>
+                    @foreach (var job in Model)
+                    {
+                    <tr>
+                        @{
+                            if (User.IsInRole("CanCreateJobs"))
+                            {
+                                <td>@Html.ActionLink(job.Title, "Index", new { Controller = "Applications", Id = job.Id })</td>
+                            }
+                            else
+                            {
+                                <td>@Html.ActionLink(job.Title, "Details", new { Controller = "Jobs", Id = job.Id })</td>
+                            }
+                        }
+                        <td>@job.School</td>
+                        <td>@wholePounds(job.Salary)</td>
+                    </tr>
+                    }
+                    </tbody>
+            </table>
+        </div>
+    </p>
+</div>
+
+
+
+
+
+
+
+    @{
+        // Function that takes salary as integer (20000) and returns string as whole pounds (£20,000)
+        string wholePounds(int input)
+        {
+            string inputString = input.ToString("C", new CultureInfo("en-GB")); // "£20,000"
+            string[] split = inputString.Split('.'); // { "£20,000", "00" }
+            string poundsOnly = split[0]; // "£20,000"
+
+            return poundsOnly;
+        }
+    }
