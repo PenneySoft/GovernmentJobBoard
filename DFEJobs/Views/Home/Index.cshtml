@@ -5,29 +5,85 @@
 <h2>@ViewBag.Message</h2>
 <br />
 <div class="row" style="border-bottom: 5px solid #003a69;">
-    <div class="col-md-4">
-        <div style="border-left: 2px solid #003a69; padding-left: 15px; font-weight: 400; font-size: 18px">
-            <img src="~/Content/Images/Education.png" height="38" /><br />
-            Jobs in<br />
-            Education
+    <div>
+        <div class="col-xs-6 col-md-4">
+            <div style="border-left: 2px solid #003a69; padding-left: 15px; font-weight: 400; font-size: 18px">
+                <img src="~/Content/Images/Education.png" height="38" /><br />
+                Jobs in<br />
+                Education
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-8">
+            @{
+                if (User.IsInRole("CanCreateJobs"))
+                {
+                    <p>@Html.ActionLink("Create job", "Create", "Jobs", null, new { @class = "btn btn-primary" })</p>
+                }
+            }
+            <p>@Html.ActionLink("View jobs", "Index", "Jobs", null, new { @class = "btn btn-primary" })</p>
+            @{
+                if (!User.IsInRole("CanCreateJobs"))
+                {
+                    <br />
+                    <br />
+                }
+            }
+            <br />
+            <br />
         </div>
     </div>
-    <div class="col-md-8">
-        @{
-            if (User.IsInRole("CanCreateJobs"))
-            {
-                <p>@Html.ActionLink("Create job", "Create", "Jobs", null, new { @class = "btn btn-primary" })</p>
+    <div>
+        <div class="col-md-4 col-xs-6">
+            <div style="border-left: 2px solid #003a69; padding-left: 15px; font-weight: 400; font-size: 18px">
+                <img src="~/Content/Images/Software.png" height="38" /><br />
+                Jobs in<br />
+                Software
+            </div>
+        </div>
+        <div class="col-md-8 col-xs-6">
+            @{
+                if (User.IsInRole("CanCreateJobs"))
+                {
+                    <p>@Html.ActionLink("Create job", "Create", "Jobs", null, new { @class = "btn btn-primary" })</p>
+                }
             }
-        }
-        <p>@Html.ActionLink("View jobs", "Index", "Jobs", null, new { @class = "btn btn-primary" })</p>
-        @{ 
-            if (!User.IsInRole("CanCreateJobs"))
-            {
-                <br />
-                <br />
+            <p>@Html.ActionLink("View jobs", "Index", "Jobs", null, new { @class = "btn btn-primary" })</p>
+            @{
+                if (!User.IsInRole("CanCreateJobs"))
+                {
+                    <br />
+                    <br />
+                }
             }
-        }
-        <br />
-        <br />
+            <br />
+            <br />
+        </div>
+    </div>
+    <div>
+        <div class="col-md-4 col-xs-6">
+            <div style="border-left: 2px solid #003a69; padding-left: 15px; font-weight: 400; font-size: 18px">
+                <img src="~/Content/Images/Defence.png" height="38" /><br />
+                Jobs in<br />
+                Defence
+            </div>
+        </div>
+        <div class="col-md-8 col-xs-6">
+            @{
+                if (User.IsInRole("CanCreateJobs"))
+                {
+                    <p>@Html.ActionLink("Create job", "Create", "Jobs", null, new { @class = "btn btn-primary" })</p>
+                }
+            }
+            <p>@Html.ActionLink("View jobs", "Index", "Jobs", null, new { @class = "btn btn-primary" })</p>
+            @{
+                if (!User.IsInRole("CanCreateJobs"))
+                {
+                    <br />
+                    <br />
+                }
+            }
+            <br />
+            <br />
+        </div>
     </div>
 </div>

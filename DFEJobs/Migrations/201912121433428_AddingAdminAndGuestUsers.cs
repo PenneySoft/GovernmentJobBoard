@@ -18,7 +18,7 @@ namespace DFEJobs.Migrations
 
             INSERT INTO [dbo].[AspNetUserRoles] ([UserId], [RoleId]) VALUES (N'7568d1be-d44c-4e52-922b-018070e6ae21', N'535e3c1a-52bb-4870-b4f4-6c6a22632594')
             INSERT INTO [dbo].[AspNetUserRoles] ([UserId], [RoleId]) VALUES (N'8ad4a932-13d3-4bc0-bc9d-beb5830ac4ce', N'535e3c1a-52bb-4870-b4f4-6c6a22632594')
-            INSERT INTO [dbo].[AspNetUserRoles] ([UserId], [RoleId]) VALUES (N'670a8df9-da77-484d-b34c-a2d830fcd019', N'8f83d163-6591-4f12-baf3-e2afec64e9d5
+            INSERT INTO [dbo].[AspNetUserRoles] ([UserId], [RoleId]) VALUES (N'670a8df9-da77-484d-b34c-a2d830fcd019', N'8f83d163-6591-4f12-baf3-e2afec64e9d5')
             ");
         }
         
