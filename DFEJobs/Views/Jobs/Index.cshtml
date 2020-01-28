@@ -13,7 +13,7 @@
 
             <table class="table table-bordered table-hover">
                 <thead style="font-weight: 600"><tr>
-                    <td style="width: 30%">Job Title</td><td>School</td><td style="width: 15%">Salary</td>
+                    <td style="width: 30%">Job Title</td><td>Location</td><td style="width: 15%">Salary</td>
                       </tr></thead>
                 <tbody>
                     @foreach (var job in Model)
@@ -29,7 +29,7 @@
                                 <td>@Html.ActionLink(job.Title, "Details", new { Controller = "Jobs", Id = job.Id })</td>
                             }
                         }
-                        <td>@job.School</td>
+                        <td>@job.Location</td>
                         <td>@wholePounds(job.Salary)</td>
                     </tr>
                     }

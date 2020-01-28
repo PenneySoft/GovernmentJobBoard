@@ -25,7 +25,7 @@ namespace DFEJobsTests
             ViewResult result = controller.Index() as ViewResult;
 
             //Assert
-            Assert.AreEqual("Department for Education Jobs", result.ViewBag.Message);
+            Assert.AreEqual("Government Job Portal", result.ViewBag.Message);
         }
 
         // JobsController

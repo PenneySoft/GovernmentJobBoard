@@ -211,6 +211,10 @@
     <Compile Include="Migrations\201912160024474_SeedingApplications.Designer.cs">
       <DependentUpon>201912160024474_SeedingApplications.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202001282307313_RenamingJobModel.cs" />
+    <Compile Include="Migrations\202001282307313_RenamingJobModel.Designer.cs">
+      <DependentUpon>202001282307313_RenamingJobModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Application.cs" />
@@ -335,6 +339,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201912160024474_SeedingApplications.resx">
       <DependentUpon>201912160024474_SeedingApplications.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001282307313_RenamingJobModel.resx">
+      <DependentUpon>202001282307313_RenamingJobModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

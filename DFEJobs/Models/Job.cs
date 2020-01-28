@@ -17,7 +17,7 @@ namespace DFEJobs.Models
         public string Title { get; set; }
 
         [StringLength(100)]
-        public string School { get; set; }
+        public string Location { get; set; }
 
         [Required(ErrorMessage = "Salary must be a number e.g. 30000")]
         public int Salary { get; set; }
