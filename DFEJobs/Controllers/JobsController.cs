@@ -24,7 +24,7 @@ namespace DFEJobs.Controllers
         }
 
 
-
+        /*
         // GET: Jobs
         public ActionResult Index()
         {
@@ -32,6 +32,40 @@ namespace DFEJobs.Controllers
 
             // Gets all job from Job table in database
             var jobs = _context.Job.ToList();
+
+            return View(jobs);
+        }
+
+        */
+
+        // GET: Jobs
+        public ActionResult Index(String dept)
+        {
+
+            var jobs = from j in _context.Job
+                       select j;
+
+            if (!String.IsNullOrEmpty(dept))
+            {
+                jobs = jobs
+                    .Where(j => j.Department
+                    .Contains(dept));
+                ViewBag.Message = dept;
+            }
+            else
+            {
+                ViewBag.Message = "Job";
+            }
+
+            ViewBag.Message += " Vacancies";
+
+            // Gets all job from Job table in database
+            /*
+            jobs = _context.Job.ToList()
+                .Where(j => j.Department
+                .Contains(dept));
+
+            */
 
             return View(jobs);
         }

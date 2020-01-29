@@ -37,11 +37,11 @@ namespace DFEJobsTests
             JobsController controller = new JobsController();
 
             //Act
-            ViewResult result2 = controller.Index() as ViewResult;
-            ViewResult result = controller.Index() as ViewResult;
+            ViewResult result2 = controller.Index("Education") as ViewResult;
+            //ViewResult result = controller.Index() as ViewResult;
 
             //Assert
-            Assert.AreEqual("Job Vacancies", result2.ViewBag.Message);
+            Assert.AreEqual("Education Vacancies", result2.ViewBag.Message);
         }
 
         [TestMethod]

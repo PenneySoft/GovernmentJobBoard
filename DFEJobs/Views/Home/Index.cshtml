@@ -20,7 +20,7 @@
                     <p>@Html.ActionLink("Create job", "Create", "Jobs", null, new { @class = "btn btn-primary" })</p>
                 }
             }
-            <p>@Html.ActionLink("View jobs", "Index", "Jobs", null, new { @class = "btn btn-primary" })</p>
+            <p>@Html.ActionLink("View jobs", "Index", "Jobs", new { dept = "Education" }, new { @class = "btn btn-primary" })</p>
             @{
                 if (!User.IsInRole("CanCreateJobs"))
                 {
@@ -47,7 +47,7 @@
                     <p>@Html.ActionLink("Create job", "Create", "Jobs", null, new { @class = "btn btn-primary" })</p>
                 }
             }
-            <p>@Html.ActionLink("View jobs", "Index", "Jobs", null, new { @class = "btn btn-primary" })</p>
+            <p>@Html.ActionLink("View jobs", "Index", "Jobs", new { dept = "Software" }, new { @class = "btn btn-primary" })</p>
             @{
                 if (!User.IsInRole("CanCreateJobs"))
                 {
@@ -74,7 +74,7 @@
                     <p>@Html.ActionLink("Create job", "Create", "Jobs", null, new { @class = "btn btn-primary" })</p>
                 }
             }
-            <p>@Html.ActionLink("View jobs", "Index", "Jobs", null, new { @class = "btn btn-primary" })</p>
+            <p>@Html.ActionLink("View jobs", "Index", "Jobs", new { dept = "Defence" }, new { @class = "btn btn-primary" })</p>
             @{
                 if (!User.IsInRole("CanCreateJobs"))
                 {
