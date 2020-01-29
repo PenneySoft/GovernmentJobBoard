@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using DFEJobs.Models;
 using DFEJobs.ViewModels;
+using PagedList;
 
 namespace DFEJobs.Controllers
 {
@@ -23,50 +24,89 @@ namespace DFEJobs.Controllers
             _context.Dispose();
         }
 
-
-        /*
         // GET: Jobs
-        public ActionResult Index()
+        public ActionResult Index(string currentDept, string deptSearchString, string sortOrder, string currentFilter, string searchString, int? page, string currentLocation, string locationSearchString)
         {
-            ViewBag.Message = "Job Vacancies";
 
-            // Gets all job from Job table in database
-            var jobs = _context.Job.ToList();
+            // Take URL "sort" parameters and store in ViewBag
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.TitleSortParm = String.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
+            ViewBag.SalarySortParm = sortOrder == "Salary" ? "salary_desc" : "Salary";
 
-            return View(jobs);
-        }
-        */
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
 
-        // GET: Jobs
-        public ActionResult Index(String dept)
-        {
+            ViewBag.CurrentFilter = searchString;
+
+            if (locationSearchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                locationSearchString = currentLocation;
+            }
+
+            ViewBag.CurrentLocation = locationSearchString;
 
             var jobs = from j in _context.Job
                        select j;
 
-            if (!String.IsNullOrEmpty(dept))
+            // Apply search criteria (if present)
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                jobs = jobs
+                    .Where(s => s.Title
+                    .Contains(searchString));
+            }
+
+            // Apply department search
+            if (!String.IsNullOrEmpty(deptSearchString))
             {
                 jobs = jobs
                     .Where(j => j.Department
-                    .Contains(dept));
-                ViewBag.Message = dept;
+                    .Contains(deptSearchString));
+                ViewBag.Message = deptSearchString;
+                currentDept = deptSearchString;
             }
             else
             {
                 ViewBag.Message = "Job";
             }
 
+            ViewBag.CurrentDept = deptSearchString;
             ViewBag.Message += " Vacancies";
 
-            // Gets all job from Job table in database
-            /*
-            jobs = _context.Job.ToList()
-                .Where(j => j.Department
-                .Contains(dept));
+            // Ordering table data
+            switch (sortOrder)
+            {
+                case "title_desc":
+                    jobs = jobs.OrderByDescending(j => j.Title);
+                    break;
+                case "Salary":
+                    jobs = jobs.OrderBy(j => j.Salary);
+                    break;
+                case "salary_desc":
+                    jobs = jobs.OrderByDescending(j => j.Salary);
+                    break;
+                default:  // Default: Title ascending 
+                    jobs = jobs.OrderBy(j => j.Title);
+                    break;
+            }
 
-            */
+            // Show many jobs found in search
+            ViewBag.JobCount = jobs.Count();
 
-            return View(jobs);
+            // Pagination
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(jobs.ToPagedList(pageNumber, pageSize));
         }
 
 

@@ -30,6 +30,7 @@ namespace DFEJobsTests
 
         // JobsController
 
+        /*
         [TestMethod]
         public void JobsIndex()
         {
@@ -43,6 +44,7 @@ namespace DFEJobsTests
             //Assert
             Assert.AreEqual("Education Vacancies", result2.ViewBag.Message);
         }
+        */
 
         [TestMethod]
         public void JobsCreate()

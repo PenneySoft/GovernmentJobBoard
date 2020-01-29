@@ -1,43 +1,93 @@
-﻿@model IEnumerable<DFEJobs.Models.Job>
+﻿@model PagedList.IPagedList<DFEJobs.Models.Job>
+@using PagedList.Mvc;
 @using System.Globalization;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 @{
     ViewBag.Title = "Jobs";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+@{
+    // Assigns "job" or "jobs" depending on number of job(s) listed
+    var jobjobs = "jobs";
+    if (ViewBag.JobCount == 1)
+    {
+        jobjobs = "job";
+    }
+}
+
 <br />
 <div class="jumbotron">
     <p>
         <div style="width: 80%">
             <h2>@ViewBag.Message</h2>
+            <h4>Found @ViewBag.JobCount @jobjobs available.</h4>
+            <br />
             <br />
 
+            @using (Html.BeginForm("Index", "Jobs", FormMethod.Get))
+            {
+<p>
+            <h4>
+                Find by job title: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                <input type="submit" value="Find" />
+            </h4>
+            <h4>
+                Find by location: @Html.TextBox("DeptSearchString", ViewBag.CurrentDept as string)
+                <input type="submit" value="Find" />
+            </h4>
+        </p>
+    }
+
             <table class="table table-bordered table-hover">
-                <thead style="font-weight: 600"><tr>
-                    <td style="width: 30%">Job Title</td><td>Location</td><td style="width: 15%">Salary</td>
-                      </tr></thead>
+                <thead style="font-weight: 600">
+                    <tr>
+                        <td style="width: 30%">
+                            @Html.ActionLink("Job Title", "Index", new
+                            {
+                                sortOrder = ViewBag.TitleSortParm,
+                                currentFilter = ViewBag.CurrentFilter
+                            })
+                        </td>
+                        <td>Location</td>
+                        <td style="width: 15%">
+                            @Html.ActionLink("Salary", "Index", new
+                             {
+                                sortOrder = ViewBag.SalarySortParm,
+                                currentFilter = ViewBag.CurrentFilter
+                             })
+                        </td>
+                    </tr>
+                </thead>
                 <tbody>
                     @foreach (var job in Model)
                     {
-                    <tr>
-                        @{
-                            if (User.IsInRole("CanCreateJobs"))
-                            {
-                                <td>@Html.ActionLink(job.Title, "Index", new { Controller = "Applications", Id = job.Id })</td>
+                        <tr>
+                            @{
+                                if (User.IsInRole("CanCreateJobs"))
+                                {
+                                    <td>@Html.ActionLink(job.Title, "Index", new { Controller = "Applications", Id = job.Id })</td>
+                                }
+                                else
+                                {
+                                    <td>@Html.ActionLink(job.Title, "Details", new { Controller = "Jobs", Id = job.Id })</td>
+                                }
                             }
-                            else
-                            {
-                                <td>@Html.ActionLink(job.Title, "Details", new { Controller = "Jobs", Id = job.Id })</td>
-                            }
-                        }
-                        <td>@job.Location</td>
-                        <td>@wholePounds(job.Salary)</td>
-                    </tr>
+                            <td>@job.Location</td>
+                            <td>@wholePounds(job.Salary)</td>
+                        </tr>
                     }
-                    </tbody>
+                </tbody>
             </table>
+            <br />
+            <br />
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+            @Html.PagedListPager(Model, page => Url.Action("Index",
+                new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
         </div>
-    </p>
-</div>
+        </p>
+        </div>
 
 
 
@@ -45,14 +95,14 @@
 
 
 
-    @{
-        // Function that takes salary as integer (20000) and returns string as whole pounds (£20,000)
-        string wholePounds(int input)
-        {
-            string inputString = input.ToString("C", new CultureInfo("en-GB")); // "£20,000"
-            string[] split = inputString.Split('.'); // { "£20,000", "00" }
-            string poundsOnly = split[0]; // "£20,000"
+        @{
+            // Function that takes salary as integer (20000) and returns string as whole pounds (£20,000)
+            string wholePounds(int input)
+            {
+                string inputString = input.ToString("C", new CultureInfo("en-GB")); // "£20,000"
+                string[] split = inputString.Split('.'); // { "£20,000", "00" }
+                string poundsOnly = split[0]; // "£20,000"
 
-            return poundsOnly;
+                return poundsOnly;
+            }
         }
-    }
