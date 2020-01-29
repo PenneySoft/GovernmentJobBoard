@@ -35,7 +35,6 @@ namespace DFEJobs.Controllers
 
             return View(jobs);
         }
-
         */
 
         // GET: Jobs

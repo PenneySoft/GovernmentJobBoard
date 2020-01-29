@@ -23,6 +23,12 @@
             </div>
 
             <div class="form-group">
+                @Html.LabelFor(j => j.Department)
+                @Html.TextBoxFor(j => j.Department, new { @class = "form-control widetext" })
+                @Html.ValidationMessageFor(j => j.Department)
+            </div>
+
+            <div class="form-group">
                 @Html.LabelFor(j => j.Salary)
                 @Html.TextBoxFor(j => j.Salary, new { @class = "form-control widetext" })
                 @Html.ValidationMessageFor(j => j.Salary)
