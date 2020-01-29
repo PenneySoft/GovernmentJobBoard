@@ -19,6 +19,10 @@ namespace DFEJobs.Models
         [StringLength(100)]
         public string Location { get; set; }
 
+        [Required]
+        [StringLength(50)]
+        public string Department { get; set; }
+
         [Required(ErrorMessage = "Salary must be a number e.g. 30000")]
         public int Salary { get; set; }
 

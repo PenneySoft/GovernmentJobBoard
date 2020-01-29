@@ -215,6 +215,18 @@
     <Compile Include="Migrations\202001282307313_RenamingJobModel.Designer.cs">
       <DependentUpon>202001282307313_RenamingJobModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202001282323126_test.cs" />
+    <Compile Include="Migrations\202001282323126_test.Designer.cs">
+      <DependentUpon>202001282323126_test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001282350221_DepartmentAddedToJob.cs" />
+    <Compile Include="Migrations\202001282350221_DepartmentAddedToJob.Designer.cs">
+      <DependentUpon>202001282350221_DepartmentAddedToJob.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001282356207_AddingDepartmentToCurrentJobs.cs" />
+    <Compile Include="Migrations\202001282356207_AddingDepartmentToCurrentJobs.Designer.cs">
+      <DependentUpon>202001282356207_AddingDepartmentToCurrentJobs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Application.cs" />
@@ -342,6 +354,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202001282307313_RenamingJobModel.resx">
       <DependentUpon>202001282307313_RenamingJobModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001282323126_test.resx">
+      <DependentUpon>202001282323126_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001282350221_DepartmentAddedToJob.resx">
+      <DependentUpon>202001282350221_DepartmentAddedToJob.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001282356207_AddingDepartmentToCurrentJobs.resx">
+      <DependentUpon>202001282356207_AddingDepartmentToCurrentJobs.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
