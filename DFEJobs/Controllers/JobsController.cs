@@ -25,7 +25,7 @@ namespace DFEJobs.Controllers
         }
 
         // GET: Jobs
-        public ActionResult Index(string currentDept, string deptSearchString, string sortOrder, string currentFilter, string searchString, int? page, string currentLocation, string locationSearchString)
+        public ActionResult Index(string currentDept, string deptSearch, string sortOrder, string currentTitle, string titleSearch, int? page, string currentLocation, string locationSearch)
         {
 
             // Take URL "sort" parameters and store in ViewBag
@@ -33,54 +33,54 @@ namespace DFEJobs.Controllers
             ViewBag.TitleSortParm = String.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
             ViewBag.SalarySortParm = sortOrder == "Salary" ? "salary_desc" : "Salary";
 
-            if (searchString != null)
+            if (titleSearch != null)
             {
                 page = 1;
             }
             else
             {
-                searchString = currentFilter;
+                titleSearch = currentTitle;
             }
 
-            ViewBag.CurrentFilter = searchString;
+            ViewBag.currentTitle = titleSearch;
 
-            if (locationSearchString != null)
+            if (locationSearch != null)
             {
                 page = 1;
             }
             else
             {
-                locationSearchString = currentLocation;
+                locationSearch = currentLocation;
             }
 
-            ViewBag.CurrentLocation = locationSearchString;
+            ViewBag.CurrentLocation = locationSearch;
 
             var jobs = from j in _context.Job
                        select j;
 
             // Apply search criteria (if present)
-            if (!String.IsNullOrEmpty(searchString))
+            if (!String.IsNullOrEmpty(titleSearch))
             {
                 jobs = jobs
                     .Where(s => s.Title
-                    .Contains(searchString));
+                    .Contains(titleSearch));
             }
 
             // Apply department search
-            if (!String.IsNullOrEmpty(deptSearchString))
+            if (!String.IsNullOrEmpty(deptSearch))
             {
                 jobs = jobs
                     .Where(j => j.Department
-                    .Contains(deptSearchString));
-                ViewBag.Message = deptSearchString;
-                currentDept = deptSearchString;
+                    .Contains(deptSearch));
+                ViewBag.Message = deptSearch;
+                currentDept = deptSearch;
             }
             else
             {
                 ViewBag.Message = "Job";
             }
 
-            ViewBag.CurrentDept = deptSearchString;
+            ViewBag.CurrentDept = currentDept;
             ViewBag.Message += " Vacancies";
 
             // Ordering table data

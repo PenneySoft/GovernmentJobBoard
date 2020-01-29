@@ -29,11 +29,11 @@
             {
 <p>
             <h4>
-                Find by job title: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                Find by job title: @Html.TextBox("TitleSearch", ViewBag.CurrentFilter as string)
                 <input type="submit" value="Find" />
             </h4>
             <h4>
-                Find by location: @Html.TextBox("DeptSearchString", ViewBag.CurrentDept as string)
+                Find by location: @Html.TextBox("LocationSearch", ViewBag.CurrentLocation as string)
                 <input type="submit" value="Find" />
             </h4>
         </p>
