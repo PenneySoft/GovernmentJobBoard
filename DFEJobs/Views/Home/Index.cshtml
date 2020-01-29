@@ -5,6 +5,13 @@
 <h2>Welcome to @ViewBag.Message</h2>
 <br />
 <div class="row" style="border-bottom: 5px solid #003a69;">
+    <div style="margin-left: 40px">
+        <form onsubmit="searchJobs()">
+            Search in all jobs: @Html.TextBox("TitleSearch", null, new { id = "searchBox" }) &nbsp; <input type="submit" class ="btn btn-default" value="Search" />
+        </form>
+    </div>
+    <br />
+    <br />
     <div>
         <div class="col-xs-6 col-md-4">
             <div style="border-left: 2px solid #003a69; padding-left: 15px; font-weight: 400; font-size: 18px">
@@ -87,3 +94,15 @@
         </div>
     </div>
 </div>
+
+<script>
+
+    function searchJobs() {
+        event.preventDefault();
+        var url = window.location.href;
+        var searchBox = document.getElementById('searchBox').value;
+        var target = url + "Jobs?titleSearch=" + searchBox;
+        window.location.href = target;
+    }
+
+</script>
