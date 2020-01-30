@@ -31,7 +31,7 @@ namespace DFEJobs.Controllers
             // Take URL "sort" parameters and store in ViewBag
             ViewBag.CurrentSort = sortOrder;
             ViewBag.TitleSortParm = String.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
-            ViewBag.SalarySortParm = sortOrder == "Salary" ? "salary_desc" : "Salary";
+            ViewBag.SalarySortParm = sortOrder == "salary_desc" ? "Salary" : "salary_desc";
 
             if (titleSearch != null)
             {

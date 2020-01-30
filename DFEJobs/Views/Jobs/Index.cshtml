@@ -17,26 +17,19 @@
 }
 <div class="jumbotron">
     <p>
-        <div style="width: 80%">
+        <div style="width: 100%">
             <h2>@ViewBag.Message</h2>
             <h4>Found @ViewBag.JobCount @jobjobs available.</h4>
-            <br />
-            <br />
-
             @using (Html.BeginForm("Index", "Jobs", FormMethod.Get))
             {
-<p>
-            <h4>
-                Find by job title: @Html.TextBox("TitleSearch", ViewBag.CurrentTitle as string)
-                <input type="submit" value="Find" />
-            </h4>
-            <h4>
-                Find by location: @Html.TextBox("LocationSearch", ViewBag.CurrentLocation as string)
-                <input type="submit" value="Find" />
-            </h4>
-        </p>
-    }
-
+                <div style="text-align: center;">
+                <p>
+                    <h4>Search: @Html.TextBox("TitleSearch", ViewBag.CurrentTitle as string, new { placeholder = "Job title", style = "padding-left: 8px" })&nbsp; in &nbsp;@Html.TextBox("LocationSearch", ViewBag.CurrentLocation as string, new { placeholder = "City", style = "padding-left: 8px" }) &nbsp; <input type="submit" class="btn btn-default" value="Search" /></h4>
+                </p>
+                </div>
+}
+            <br />
+            <br />
             <table class="table table-bordered table-hover">
                 <thead style="font-weight: 600">
                     <tr>
@@ -85,9 +78,9 @@
 
             @Html.PagedListPager(Model, page => Url.Action("Index",
                 new { page, sortOrder = ViewBag.CurrentSort, currentDept = ViewBag.CurrentDept, currentTitle = ViewBag.CurrentTitle, currentlocation = ViewBag.CurrentLocation }))
-        </div>
-        </p>
-        </div>
+            </div>
+            </p>
+            </div>
 
 
 
@@ -95,14 +88,14 @@
 
 
 
-        @{
-            // Function that takes salary as integer (20000) and returns string as whole pounds (£20,000)
-            string wholePounds(int input)
-            {
-                string inputString = input.ToString("C", new CultureInfo("en-GB")); // "£20,000"
-                string[] split = inputString.Split('.'); // { "£20,000", "00" }
-                string poundsOnly = split[0]; // "£20,000"
+            @{
+                // Function that takes salary as integer (20000) and returns string as whole pounds (£20,000)
+                string wholePounds(int input)
+                {
+                    string inputString = input.ToString("C", new CultureInfo("en-GB")); // "£20,000"
+                    string[] split = inputString.Split('.'); // { "£20,000", "00" }
+                    string poundsOnly = split[0]; // "£20,000"
 
-                return poundsOnly;
+                    return poundsOnly;
+                }
             }
-        }
