@@ -42,7 +42,7 @@ namespace DFEJobs.Controllers
                 titleSearch = currentTitle;
             }
 
-            ViewBag.currentTitle = titleSearch;
+            ViewBag.CurrentTitle = titleSearch;
 
             if (locationSearch != null)
             {
@@ -51,6 +51,15 @@ namespace DFEJobs.Controllers
             else
             {
                 locationSearch = currentLocation;
+            }
+
+            if (deptSearch != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                deptSearch = currentDept;
             }
 
             ViewBag.CurrentLocation = locationSearch;
@@ -64,6 +73,13 @@ namespace DFEJobs.Controllers
                 jobs = jobs
                     .Where(s => s.Title
                     .Contains(titleSearch));
+            }
+
+            if (!String.IsNullOrEmpty(locationSearch))
+            {
+                jobs = jobs
+                    .Where(s => s.Location
+                    .Contains(locationSearch));
             }
 
             // Apply department search
@@ -104,7 +120,7 @@ namespace DFEJobs.Controllers
             ViewBag.JobCount = jobs.Count();
 
             // Pagination
-            int pageSize = 3;
+            int pageSize = 5;
             int pageNumber = (page ?? 1);
             return View(jobs.ToPagedList(pageNumber, pageSize));
         }

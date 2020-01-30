@@ -15,8 +15,6 @@
         jobjobs = "job";
     }
 }
-
-<br />
 <div class="jumbotron">
     <p>
         <div style="width: 80%">
@@ -54,7 +52,9 @@
                             @Html.ActionLink("Salary", "Index", new
                              {
                                 sortOrder = ViewBag.SalarySortParm,
-                                currentFilter = ViewBag.CurrentFilter
+                                currentTitle = ViewBag.CurrentTitle,
+                                currentLocation = ViewBag.CurrentLocation,
+                                currentDept = ViewBag.CurrentDept
                              })
                         </td>
                     </tr>
@@ -84,7 +84,7 @@
             Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
             @Html.PagedListPager(Model, page => Url.Action("Index",
-                new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                new { page, sortOrder = ViewBag.CurrentSort, currentDept = ViewBag.CurrentDept, currentTitle = ViewBag.CurrentTitle, currentlocation = ViewBag.CurrentLocation }))
         </div>
         </p>
         </div>
