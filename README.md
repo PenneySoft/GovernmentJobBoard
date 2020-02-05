@@ -7,7 +7,7 @@ Online portal for hosting and applying for jobs within government.
 - Pagination
 - Sorting (by Salary etc)
 
-<img style="border:1px solid #000000" src="https://raw.githubusercontent.com/PenneySoft/GovernmentJobBoard/master/Assets/Home.jpg">
+<img style="padding:1px;border:thin solid black;" src="https://raw.githubusercontent.com/PenneySoft/GovernmentJobBoard/master/Assets/Home.jpg">
 
 
 
