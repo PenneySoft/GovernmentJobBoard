@@ -69,4 +69,6 @@ Able to view jobs, create new jobs and read applications.
 
 # 
 
+- Viewing job applications
+
 <img src="https://raw.githubusercontent.com/PenneySoft/GovernmentJobBoard/master/Asset/AdminApplicants.jpg">
