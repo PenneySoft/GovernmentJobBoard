@@ -4,17 +4,12 @@ Online portal for hosting and applying for jobs within government.
 
 # User
 
-Able to view and apply to jobs.
-
-<img src="https://raw.githubusercontent.com/PenneySoft/GovernmentJobBoard/master/Asset/Home.jpg">
-
-# 
+- Able to view and apply to jobs.
+- Searching by Location:
 
 <img src="https://raw.githubusercontent.com/PenneySoft/GovernmentJobBoard/master/Asset/HomeSearch.jpg">
 
 # 
-
-- Searching by Location
 
 <img src="https://raw.githubusercontent.com/PenneySoft/GovernmentJobBoard/master/Asset/LocationSearch.jpg">
 
