@@ -1,5 +1,6 @@
 # GovernmentJobBoard
 Online portal for hosting and applying for jobs within government.
+Built using ASP.NET MVC 5 with C#, SQL Server, HTML, CSS, Bootstrap, and Javascript.
 
 
 # Anonymous Users
