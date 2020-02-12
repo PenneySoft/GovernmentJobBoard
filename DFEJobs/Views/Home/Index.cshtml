@@ -4,93 +4,102 @@
 <br />
 <h2>Welcome to @ViewBag.Message</h2>
 <br />
-<div class="row" style="border-bottom: 5px solid #003a69;">
-    <div style="text-align: center;">
-        <form onsubmit="searchJobs()">
-            <h4>Search in all departments: @Html.TextBox("TitleSearch", null, new { id = "searchBox", placeholder = "Job title", style = "padding-left: 8px" })&nbsp; in &nbsp;@Html.TextBox("LocationSearch", null, new { id = "citySearchBox", placeholder = "City", style = "padding-left: 8px" }) &nbsp; <input type="submit" class="btn btn-default" value="Search" /></h4>
-        </form>
-    </div>
-    <br />
-    <br />
-    <div>
-        <div class="col-xs-6 col-md-4">
-            <div style="border-left: 2px solid #003a69; padding-left: 15px; font-weight: 400; font-size: 18px">
-                <img src="~/Content/Images/Education.png" height="38" /><br />
-                Jobs in<br />
-                Education
+<div class="container">
+    <div style="border-bottom: 5px solid #003a69;">
+            <div class="row">
+                    <div">
+                        <form onsubmit="searchJobs()">
+                            <div class="form-group">
+                                <h4>
+                                    Search in all departments: @Html.TextBox("TitleSearch", null, new { id = "searchBox", placeholder = "Job title", style = "pading-left: 8px; margin: 8px 0px 8px 0px", @class = "form-control" })&nbsp;
+                                    in &nbsp;
+                                    @Html.TextBox("LocationSearch", null, new { id = "locationBox", placeholder = "City", style = "padding-left: 8px; margin: 8px 0px 8px 0px", @class = "form-control" })
+                            </div> &nbsp;
+                            <input type="submit" class="btn btn-default" value="Search" /></h4>
+                        </form>
+                    </div>
+        <br />
+        <br />
+        <div class="row">
+            <div class="col-xs-6 col-md-4" style="padding-top: 8px">
+                <div style="border-left: 2px solid #003a69; padding-left: 15px; font-weight: 400; font-size: 18px">
+                    <img src="/Content/Images/Education.png" height="38" /><br />
+                    Jobs in<br />
+                    Education
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-8" style="padding-top: 8px">
+                @{
+                    if (User.IsInRole("CanCreateJobs"))
+                    {
+                        <p>@Html.ActionLink("Create job", "Create", "Jobs", null, new { @class = "btn btn-primary" })</p>
+                    }
+                }
+                <p>@Html.ActionLink("View jobs", "Index", "Jobs", new { deptSearch = "Education" }, new { @class = "btn btn-primary" })</p>
+                @{
+                    if (!User.IsInRole("CanCreateJobs"))
+                    {
+                        <br />
+                        <br />
+                    }
+                }
+                <br />
+                <br />
             </div>
         </div>
-        <div class="col-xs-6 col-md-8">
-            @{
-                if (User.IsInRole("CanCreateJobs"))
-                {
-                    <p>@Html.ActionLink("Create job", "Create", "Jobs", null, new { @class = "btn btn-primary" })</p>
+        <div class="row">
+            <div class="col-md-4 col-xs-6">
+                <div style="border-left: 2px solid #003a69; padding-left: 15px; font-weight: 400; font-size: 18px">
+                    <img src="~/Content/Images/Software.png" height="38" /><br />
+                    Jobs in<br />
+                    Software
+                </div>
+            </div>
+            <div class="col-md-8 col-xs-6">
+                @{
+                    if (User.IsInRole("CanCreateJobs"))
+                    {
+                        <p>@Html.ActionLink("Create job", "Create", "Jobs", null, new { @class = "btn btn-primary" })</p>
+                    }
                 }
-            }
-            <p>@Html.ActionLink("View jobs", "Index", "Jobs", new { deptSearch = "Education" }, new { @class = "btn btn-primary" })</p>
-            @{
-                if (!User.IsInRole("CanCreateJobs"))
-                {
-                    <br />
-                    <br />
+                <p>@Html.ActionLink("View jobs", "Index", "Jobs", new { deptSearch = "Software" }, new { @class = "btn btn-primary" })</p>
+                @{
+                    if (!User.IsInRole("CanCreateJobs"))
+                    {
+                        <br />
+                        <br />
+                    }
                 }
-            }
-            <br />
-            <br />
-        </div>
-    </div>
-    <div>
-        <div class="col-md-4 col-xs-6">
-            <div style="border-left: 2px solid #003a69; padding-left: 15px; font-weight: 400; font-size: 18px">
-                <img src="~/Content/Images/Software.png" height="38" /><br />
-                Jobs in<br />
-                Software
+                <br />
+                <br />
             </div>
         </div>
-        <div class="col-md-8 col-xs-6">
-            @{
-                if (User.IsInRole("CanCreateJobs"))
-                {
-                    <p>@Html.ActionLink("Create job", "Create", "Jobs", null, new { @class = "btn btn-primary" })</p>
-                }
-            }
-            <p>@Html.ActionLink("View jobs", "Index", "Jobs", new { deptSearch = "Software" }, new { @class = "btn btn-primary" })</p>
-            @{
-                if (!User.IsInRole("CanCreateJobs"))
-                {
-                    <br />
-                    <br />
-                }
-            }
-            <br />
-            <br />
-        </div>
-    </div>
-    <div>
-        <div class="col-md-4 col-xs-6">
-            <div style="border-left: 2px solid #003a69; padding-left: 15px; font-weight: 400; font-size: 18px">
-                <img src="~/Content/Images/Defence.png" height="38" /><br />
-                Jobs in<br />
-                Defence
+        <div class="row">
+            <div class="col-md-4 col-xs-6">
+                <div style="border-left: 2px solid #003a69; padding-left: 15px; font-weight: 400; font-size: 18px">
+                    <img src="~/Content/Images/Defence.png" height="38" /><br />
+                    Jobs in<br />
+                    Defence
+                </div>
             </div>
-        </div>
-        <div class="col-md-8 col-xs-6">
-            @{
-                if (User.IsInRole("CanCreateJobs"))
-                {
-                    <p>@Html.ActionLink("Create job", "Create", "Jobs", null, new { @class = "btn btn-primary" })</p>
+            <div class="col-md-8 col-xs-6">
+                @{
+                    if (User.IsInRole("CanCreateJobs"))
+                    {
+                        <p>@Html.ActionLink("Create job", "Create", "Jobs", null, new { @class = "btn btn-primary" })</p>
+                    }
                 }
-            }
-            <p>@Html.ActionLink("View jobs", "Index", "Jobs", new { deptSearch = "Defence" }, new { @class = "btn btn-primary" })</p>
-            @{
-                if (!User.IsInRole("CanCreateJobs"))
-                {
-                    <br />
-                    <br />
+                <p>@Html.ActionLink("View jobs", "Index", "Jobs", new { deptSearch = "Defence" }, new { @class = "btn btn-primary" })</p>
+                @{
+                    if (!User.IsInRole("CanCreateJobs"))
+                    {
+                        <br />
+                        <br />
+                    }
                 }
-            }
-            <br />
-            <br />
+                <br />
+                <br />
+            </div>
         </div>
     </div>
 </div>
@@ -100,8 +109,9 @@
     function searchJobs() {
         event.preventDefault();
         var url = window.location.href;
-        var searchBox = document.getElementById('searchBox').value;
-        var target = url + "Jobs?titleSearch=" + searchBox;
+        var searchBox1 = document.getElementById('searchBox').value;
+        var searchBox2 = document.getElementById('locationBox').value;
+        var target = url + "Jobs?titleSearch=" + searchBox1 + "&locationSearch=" + searchBox2;
         window.location.href = target;
     }
 
