@@ -30,19 +30,19 @@
 }
             <br />
             <br />
-            <table class="table table-bordered table-hover">
+            <table class="table table-bordered table-hover table-striped">
                 <thead style="font-weight: 600">
                     <tr>
                         <td style="width: 30%">
-                            @Html.ActionLink("Job Title", "Index", new
-                            {
-                                sortOrder = ViewBag.TitleSortParm,
-                                currentFilter = ViewBag.CurrentFilter
-                            })
+                            @Html.ActionLink("Job Title ▲▼", "Index", new
+                       {
+                           sortOrder = ViewBag.TitleSortParm,
+                           currentFilter = ViewBag.CurrentFilter
+                       }, new { @class = "" } )
                         </td>
                         <td>Location</td>
                         <td style="width: 15%">
-                            @Html.ActionLink("Salary", "Index", new
+                            @Html.ActionLink("Salary ▲▼", "Index", new
                              {
                                 sortOrder = ViewBag.SalarySortParm,
                                 currentTitle = ViewBag.CurrentTitle,
